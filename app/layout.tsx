@@ -2,6 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import React from "react";
+import Link from "next/link";
+import { SignOutButton, UserButton } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +21,32 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <header>
+            <nav>
+              <div className="navbar bg-base-100">
+                <div className="flex-1">
+                  <a className="btn btn-ghost normal-case text-xl">Mood.ai</a>
+                </div>
+                <div className="flex-none gap-2">
+                  <div className="form-control">
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="input input-bordered w-24 md:w-auto"
+                    />
+                  </div>
+                  <div className="dropdown dropdown-end">
+                    <div className="h-full w-full px-6 flex items-center justify-end">
+                      <UserButton afterSignOutUrl="/" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </header>
+          <div>{children}</div>
+        </body>
       </html>
     </ClerkProvider>
   );

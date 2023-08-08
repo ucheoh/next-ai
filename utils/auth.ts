@@ -9,3 +9,17 @@ export async function getUserByClerkID() {
     },
   });
 }
+
+export async function getEntriesByClerkID() {
+  const { userId } = await auth();
+  if (!userId) return;
+  return await prisma.journalEntry.findMany({
+    where: {
+      userId
+    },
+    orderBy: {
+      createdAt: "desc"
+    }
+  });
+}
+

@@ -1,4 +1,4 @@
-export default function JournalEntry() {
+export default function EntryCard({}) {
   return (
     <div className="max-w-sm rounded overflow-hidden border  ">
       <div className="max-w-sm rounded overflow-hidden shadow-lg">
