@@ -25,6 +25,8 @@ async function getEntries() {
   return entries;
 }
 
+
+
 export default async function JournalPage() {
   const entries = await getEntries();
   return (
