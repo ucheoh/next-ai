@@ -20,10 +20,11 @@ export default function Editor({ entry }: { entry: Entry }) {
   });
 
   return (
-    <div className="w-screen h-screen">
+    <div className="h-full">
       {isSaving && <span className="loading loading-bars loading-lg"></span>}
       <textarea
-        className="w-screen h-screen p-6 text-xl bg-yellow-300 outline-none"
+      style={{width: '-webkit-fill-available' }}
+        className="h-screen p-6 text-xl bg-yellow-300 outline-none "
         value={text}
         onChange={(e) => setText(e.currentTarget.value)}
       ></textarea>
