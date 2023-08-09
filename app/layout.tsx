@@ -26,7 +26,7 @@ export default function RootLayout({
             <nav>
               <div className="navbar bg-base-100">
                 <div className="flex-1">
-                  <a className="btn btn-ghost normal-case text-xl">Mood.ai</a>
+                  <Link href="/journal" className="btn btn-ghost normal-case text-xl">Mood.ai</Link>
                 </div>
                 <div className="flex-none gap-2">
                   <div className="form-control">

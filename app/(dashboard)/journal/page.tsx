@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SignOutButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs";
 import prisma from "@/utils/db";
-import { getUserByClerkID } from "@/utils/auth";
+import getUserByClerkID from "@/utils/auth";
 import NewEntryCard from "@/components/NewEntryCard";
 import EntryCard from "@/components/EntryCard";
 
@@ -32,16 +32,19 @@ export default async function JournalPage() {
       <div className="block">
         <h1 className="mx-6 text-5xl mt-4 mb-6">Journals</h1>
       </div>
-      <div className="mx-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 l:grid-cols-4 2xl:grid-cols-5 gap-4">
-        <NewEntryCard />
-        <ul>
+
+      <ul>
+        <div className="mx-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 l:grid-cols-4 2xl:grid-cols-5 gap-4">
+          <NewEntryCard />
           {entries?.map((entry) => (
             <li key={entry.id}>
-              <EntryCard />
+              <Link href={`/journal/${entry.id}`}>
+                <EntryCard entry={entry} />
+              </Link>
             </li>
           ))}
-        </ul>
-      </div>
+        </div>
+      </ul>
     </main>
   );
 }
