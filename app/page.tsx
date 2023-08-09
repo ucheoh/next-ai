@@ -3,7 +3,7 @@ import { auth, SignOutButton, SignUpButton } from "@clerk/nextjs";
 
 export default async function Home() {
   const { userId } = await auth();
-  
+
   let href = userId ? "/journal" : "/new-user";
   return (
     <main className="w-screen h-screen bg-black flex justify-center items-center text-white">
@@ -13,8 +13,11 @@ export default async function Home() {
           The best app for tracking your mood throughout your life
         </p>
         {userId ? (
-          <><Link href="/journals"><button>View Journals</button></Link>
-          <SignOutButton>Sign Out</SignOutButton>
+          <>
+            <Link href="/journals">
+              <button>View Journals</button>
+            </Link>
+            <SignOutButton>Sign Out</SignOutButton>
           </>
         ) : (
           <SignUpButton mode="modal">
@@ -23,7 +26,7 @@ export default async function Home() {
             </button>
           </SignUpButton>
         )}
-{/* 
+        {/* 
         <Link href={href}>
           <button>Get Started</button>
         </Link> */}
