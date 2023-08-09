@@ -5,6 +5,7 @@ import prisma from "@/utils/db";
 import getUserByClerkID from "@/utils/auth";
 import NewEntryCard from "@/components/NewEntryCard";
 import EntryCard from "@/components/EntryCard";
+import analyze from "@/utils/ai"
 
 async function getEntries() {
   const { userId } = await auth();
@@ -22,8 +23,11 @@ async function getEntries() {
     },
   });
 
+  // await analyze("What's today's date?");
+
   return entries;
 }
+
 
 export default async function JournalPage() {
   const entries = await getEntries();
