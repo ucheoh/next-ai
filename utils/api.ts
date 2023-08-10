@@ -35,3 +35,17 @@ export default async function createNewEntry() {
     return data;
   }
 }
+
+export async function askQuestion(question: string) {
+
+  const res = await fetch(
+    new Request(createUrl("/api/question"), {
+      method: "POST",
+      body: JSON.stringify({ question }),
+    })
+  );
+  if (res.ok) {
+    const data = await res.json();
+    return data.data;
+  }
+}

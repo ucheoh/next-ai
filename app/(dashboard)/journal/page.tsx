@@ -7,6 +7,7 @@ import NewEntryCard from "@/components/NewEntryCard";
 import EntryCard from "@/components/EntryCard";
 import analyze from "@/utils/ai";
 import { Entry } from "@/types/journal";
+import Question from "@/components/Question";
 
 async function getEntries() {
   const { userId } = await auth();
@@ -23,8 +24,6 @@ async function getEntries() {
       createdAt: "desc",
     },
   });
-
-  console.log(entries);
         
   return entries;
 }
@@ -36,7 +35,9 @@ export default async function JournalPage() {
       <div className="block">
         <h1 className="mx-6 text-5xl mt-4 mb-6">Journals</h1>
       </div>
-
+<div>
+  <Question />
+</div>
       <ul>
         <div className="mx-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 l:grid-cols-4 2xl:grid-cols-5 gap-4">
           <NewEntryCard />

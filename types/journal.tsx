@@ -10,7 +10,7 @@ export type Analysis = {
   summary: string;
   color: string;
   negative: boolean;
-}
+};
 
 export type Entry = {
   id: string;
@@ -19,4 +19,10 @@ export type Entry = {
   content: string;
   analysis?: Analysis | null;
   userId: string;
-}
+};
+
+export type QAEntry = {
+  id: string;
+  content: string;
+  createdAt: Date;
+};
