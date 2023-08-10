@@ -15,19 +15,23 @@ async function getEntry(id: string) {
         id,
       },
     },
+    include: {
+      analysis: true,
+    },
   });
   return entry;
 }
 
 export default async function EntryPage({ params }: { params: IParamsProps }) {
   const entry = await getEntry(params.id);
+
   const analysisData = [
     { name: "Summary", value: "Test" },
     { name: "Subject", value: "Testing" },
     { name: "Mood", value: "Mood" },
     { name: "Negative", value: false },
   ];
-  if (!entry) return;
+  if (!entry || !entry.analysis) return;
   return (
     <div className="h-full w-full grid grid-cols-3">
       <div className="col-span-2">
@@ -47,7 +51,6 @@ export default async function EntryPage({ params }: { params: IParamsProps }) {
         </ul>
       </div>
       </div>
-
     </div>
   );
 }

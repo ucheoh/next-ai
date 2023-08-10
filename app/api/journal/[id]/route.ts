@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/utils/db";
 import getUserByClerkID from "@/utils/auth";
 import { revalidatePath } from "next/cache";
+import analyze from "@/utils/ai";
 
 export async function PATCH(
   req: Request,
@@ -21,5 +22,18 @@ export async function PATCH(
       content,
     },
   });
-  return NextResponse.json({ data: updatedEntry });
+
+  const analysis = await analyze(updatedEntry.content);
+
+  const updated = await prisma.analysis.update({
+    
+    where: {
+      entryId: updatedEntry.id
+    },
+    data: {
+      ...(analysis)
+    },
+  })
+
+  return NextResponse.json({ data: {...updated, analysis }});
 }

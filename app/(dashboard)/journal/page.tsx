@@ -5,7 +5,8 @@ import prisma from "@/utils/db";
 import getUserByClerkID from "@/utils/auth";
 import NewEntryCard from "@/components/NewEntryCard";
 import EntryCard from "@/components/EntryCard";
-import analyze from "@/utils/ai"
+import analyze from "@/utils/ai";
+import { Entry } from "@/types/journal";
 
 async function getEntries() {
   const { userId } = await auth();
@@ -23,8 +24,8 @@ async function getEntries() {
     },
   });
 
-  // await analyze("What's today's date?");
-
+  console.log(entries);
+        
   return entries;
 }
 
@@ -39,7 +40,7 @@ export default async function JournalPage() {
       <ul>
         <div className="mx-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 l:grid-cols-4 2xl:grid-cols-5 gap-4">
           <NewEntryCard />
-          {entries?.map((entry) => (
+          {entries?.map((entry: Entry) => (
             <li key={entry.id}>
               <Link href={`/journal/${entry.id}`}>
                 <EntryCard entry={entry} />
