@@ -5,8 +5,6 @@ function createUrl(path: string) {
 }
 
 export async function updateEntry(id: string, content: string) {
-  console.log("getting ready to fetch");
-
   const res = await fetch(
     new Request(createUrl(`/api/journal/${id}`), {
       method: "PATCH",
@@ -14,18 +12,10 @@ export async function updateEntry(id: string, content: string) {
     })
   );
 
-  console.log("res received");
-
   if (res.ok) {
-    console.log("res ok");
-    console.log(res);
-    console.log("res.body", res.body);
-    const data = await res.status;
-    console.log("return data");
+    const data = await res.json();
     return data;
   }
-
-  console.log("res okay");
 }
 
 export default async function createNewEntry() {

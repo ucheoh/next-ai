@@ -12,19 +12,26 @@ async function getEntry(id: string) {
     where: {
       userId_id: {
         userId: user.id,
-        id
-      }
-    }
-  })
+        id,
+      },
+    },
+    include: {
+      analysis: true,
+    },
+  });
   return entry;
 }
 
 export default async function EntryPage({ params }: { params: IParamsProps }) {
   const entry = await getEntry(params.id);
+  if (!entry || !entry.analysis) return;
+
+
+
   if (!entry) return;
   return (
     <div className="h-full w-full">
-      <Editor entry={entry}/>
+      <Editor entry={entry} />
     </div>
   );
 }
