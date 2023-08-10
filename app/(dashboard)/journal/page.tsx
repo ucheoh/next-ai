@@ -25,6 +25,7 @@ async function getEntries() {
   });
 
   console.log(entries);
+        
   return entries;
 }
 

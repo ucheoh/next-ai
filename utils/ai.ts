@@ -56,4 +56,4 @@ export default async function analyze(content: any) {
   } catch (e) {
     console.log(e);
   }
-}
+  
