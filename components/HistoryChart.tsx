@@ -1,18 +1,36 @@
 "use client";
 
-import { ResponsiveContainer, Line, XAxis, Tooltip, LineChart } from "recharts";
+import { Value } from "@prisma/client/runtime/library";
+import {
+  ResponsiveContainer,
+  Line,
+  XAxis,
+  Tooltip,
+  TooltipProps,
+  LineChart,
+} from "recharts";
+import {
+  ValueType,
+  NameType,
+} from "recharts/types/component/DefaultTooltipContent";
+import { HistoryChartProps } from "@/types/journal";
 
-function CustomToolTip({payload, label, active}) {
-  console.log("custom tooltip")
+function CustomToolTip({
+  payload,
+  label,
+  active,
+}: TooltipProps<number, string>) {
+  console.log("custom tooltip");
   const dateLabel = new Date(label).toLocaleString("en-us", {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  })
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
   if (active) {
+    if (!payload) return;
     const analysis = payload[0].payload;
     return (
       <div className="p-8 custom-tooltip bg-white/5 shadow-md border border-black/10 rounded-lg backdrop-blur-md relative">
@@ -27,9 +45,7 @@ function CustomToolTip({payload, label, active}) {
   }
 }
 
-export default function HistoryChart({ data }) {
-  console.log("test")
-  console.log("data", data);
+export default function HistoryChart({ data }: { data: HistoryChartProps[] }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={data}>

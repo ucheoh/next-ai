@@ -25,7 +25,7 @@ export default function Editor({ entry }: { entry: Entry }) {
     onSave: async (_text: string) => {
       setIsSaving(true);
       const { data } = await updateEntry(entry.id, _text);
-      setAnalysis(data.analysis)
+      setAnalysis(data.analysis);
       setIsSaving(false);
     },
   });

@@ -1,33 +1,40 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import Home from "../app/page";
+import React from "react";
 
 vi.mock("@clerk/nextjs", () => {
   const mockedFunctions = {
     auth: () => new Promise((resolve) => resolve({ userId: "asdlfjalsdkfj" })),
-    ClerkProvider: ({children}) => <div>{children}</div>,
-    SignOutButton: (props) => <button onClick={props.onClick} {...props}>Sign Out</button>,
+    ClerkProvider: ({ children }: { children: React.ReactNode }) => (
+      <div>{children}</div>
+    ),
+    SignOutButton: (props: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+      <button onClick={props.onClick} {...props}>
+        Sign Out
+      </button>
+    ),
     useUser: () => ({
       isSignedIn: true,
       user: {
-        id: 'user_2NNEqL2nrIRdJ194ndJqAHwEfxC',
-        fullName: 'Charles Harris',
-      }
-    })
+        id: "user_2NNEqL2nrIRdJ194ndJqAHwEfxC",
+        fullName: "Charles Harris",
+      },
+    }),
   };
 
-  return mockedFunctions
+  return mockedFunctions;
 });
 
 vi.mock("next/font/google", () => {
   return {
     Inter: () => ({
-      className: "inter"
-    })
-  }
-})
+      className: "inter",
+    }),
+  };
+});
 
 test(`Home`, async () => {
-  render(await Home())
+  render(await Home());
   expect(screen.getByText("The best journal app, period.")).toBeInTheDocument();
-})
+});

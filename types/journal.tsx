@@ -26,3 +26,17 @@ export type QAEntry = {
   content: string;
   createdAt: Date;
 };
+
+export type HistoryChartProps = {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  entryId: string;
+  userId: string;
+  mood: string;
+  summary: string;
+  color: string;
+  negative: boolean;
+  subject: string;
+  sentimentScore: number;
+};

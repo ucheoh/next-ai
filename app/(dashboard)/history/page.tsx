@@ -19,8 +19,8 @@ const getData = async () => {
 }
 
 const fullScreenStyle = {
-  height: '85vh', // 100% of viewport height
-  width: '100vw',  // 100% of viewport width
+  height: '85vh',
+  width: '100vw',
   margin: 0,
   paddingBottom: "80px",
   paddingLeft: "32px",

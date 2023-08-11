@@ -3,7 +3,6 @@
 import createNewEntry from "@/utils/api";
 import { useRouter } from "next/navigation";
 
-
 export default function NewEntryCard() {
   const router = useRouter();
 

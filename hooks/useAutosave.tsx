@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react';
-import { CommonProps } from '../types/props';
-import useDebounce from '@/hooks/useDebounce';
+import { useRef, useEffect } from "react";
+import { CommonProps } from "../types/autosave";
+import useDebounce from "@/hooks/useDebounce";
 
 export default function useAutosave<TData, TReturn>({
   data,
@@ -36,6 +36,6 @@ export default function useAutosave<TData, TReturn>({
         handleSave.current(valueOnCleanup.current);
       }
     },
-    [saveOnUnmount],
+    [saveOnUnmount]
   );
 }

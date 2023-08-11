@@ -1,6 +1,6 @@
 import { Entry } from "@/types/journal";
 
-export default function EntryCard({entry}: {entry: Entry}) {
+export default function EntryCard({ entry }: { entry: Entry }) {
   const date = new Date(entry.createdAt).toDateString();
   return (
     <div className="max-w-sm rounded overflow-hidden border border-black/50 ">

@@ -28,7 +28,7 @@ export default function Question() {
           What's your question?
         </label>
         <input
-        disabled={loading}
+          disabled={loading}
           onChange={onChange}
           value={question}
           type="text"
@@ -36,10 +36,11 @@ export default function Question() {
           className="border border-black/20 px-1 py-2 text-sm"
           name="question"
         />
-        <button 
+        <button
           disabled={loading}
-          type="submit" 
-          className="bg-blue-300 px-6 py-2 rounded-sm">
+          type="submit"
+          className="bg-blue-300 px-6 py-2 rounded-sm"
+        >
           Submit
         </button>
       </form>
