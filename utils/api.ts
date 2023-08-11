@@ -1,5 +1,6 @@
 // import { revalidatePath } from "next/cache";
 
+
 function createUrl(path: string) {
   return window.location.origin + path;
 }
@@ -19,6 +20,7 @@ export async function updateEntry(id: string, content: string) {
 }
 
 export default async function createNewEntry() {
+
   const res = await fetch(
     new Request(createUrl("/api/journal"), {
       method: "POST",
